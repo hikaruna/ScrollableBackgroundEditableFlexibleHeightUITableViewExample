@@ -1,0 +1,21 @@
+# ScrollableBackgroundEditableFlexibleHeightUITableViewExample
+
+- UITableViewに背景をつけたいよ
+- スクロールしたらついてくる背景にしてほしいよ
+- 背景はSliceImageだから、Repeatとかしちゃだめだよ
+- 背景に対してTableViewのContentのInsetを指定してほしいよ
+
+UITableViewでスクロールでついてくる背景を設定するのは簡単。
+ImageViewをTableViewにaddSubViewとtoBackすればいいだけ。
+そのImageViewをContentSizeにSyncするの簡単。LayoutSubViewsを書けばいい。
+だが、contentInset、テメーは無理だ。背景を通常のSubViewとして管理している以上、背景ごとInset効いちゃう。
+結論としてはUITableViewを使うのやめて、HorizontalStackViewでもScrollViewにぶち込めって話だわ。
+でも、TableのEditing使いたかったから頑張った。
+
+1. UITableViewのScroll切って
+1. ScrollViewに背景とTableView入れて
+1. TableViewはSuperViewにMargin入れて
+1. TableViewのHeightConstraintをViewControllerでcontentSizeが変わるたび書き換えて
+    - TableViewのinstricSizeをOverrideしてもStoryboardPreviewがユルサナイから仕方ないね
+
+なんでこんなに大変なの？
